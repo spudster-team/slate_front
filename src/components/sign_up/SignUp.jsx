@@ -124,7 +124,7 @@ const SignUp = ({isLogin}) => {
           <form>
             <div className="fieldset">
               <input
-                className="form-control"
+                className=""
                 value={nom}
                 type="text"
                 placeholder="Nom"
@@ -133,7 +133,7 @@ const SignUp = ({isLogin}) => {
             </div>
             <div className="fieldset">
               <input
-                className="form-control"
+                className=""
                 type="text"
                 placeholder="prenom"
                 value={prenom}
@@ -142,7 +142,7 @@ const SignUp = ({isLogin}) => {
             </div>
             <div className="fieldset">
               <input
-                className="form-control"
+                className=""
                 type="email"
                 placeholder="email"
                 value={email}
@@ -151,7 +151,7 @@ const SignUp = ({isLogin}) => {
             </div>
             <div className="fieldset">
               <input
-                className="form-control"
+                className=""
                 type="password"
                 placeholder="Mot de passe"
                 value={password}
@@ -160,7 +160,7 @@ const SignUp = ({isLogin}) => {
             </div>
             <div className="fieldset">
               <input
-                className="form-control"
+                className=""
                 type="password"
                 placeholder="Confirmer le mot de passe"
                 value={confirmPassword}
@@ -172,7 +172,7 @@ const SignUp = ({isLogin}) => {
             </div>
             <div className="button-form">
               <div
-                className="btn btn-success"
+                className="btn btn-yellow"
                 onClick={handleSubmit}
                 disabled={isLoading ? true : false}
               >

@@ -87,7 +87,7 @@ const Login = ({isLogin}) => {
           <form action="">
             <div className="fieldset">
               <input
-                className="form-control"
+                className=""
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -96,7 +96,7 @@ const Login = ({isLogin}) => {
             </div>
             <div className="fieldset">
               <input
-                className="form-control"
+                className=""
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -107,7 +107,7 @@ const Login = ({isLogin}) => {
               <a href="#test">Mot de passe oublié ?</a>
             </div>
             <div className="button-form">
-              <div className="btn btn-success" 
+              <div className="btn btn-yellow" 
               onClick={handleSubmit}
               disabled={isLoading ? true : false}
               >

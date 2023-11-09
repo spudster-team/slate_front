@@ -13,20 +13,25 @@ const MainBanner = () => {
             Bienvenue sur <em>Slate</em> - L'université des Questions et
             Réponses
           </h2>
-          <div className="row mb-2 mt-5">
-            <div className="col-md-8 mx-auto">
-              <div className="search-bar">
+          <div className="row mb-3 mt-5">
+            <div className="col-md-6 mx-auto">
+              <div className="search-bar input-group">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="basic-addon1">
+                    <i className="fa fa-search"></i>
+                  </span>
+                </div>
                 <input
                   type="text"
-                  className="form-control"
-                  placeholder="Rechercher..."
+                  className="form-control search-bar-input"
+                  placeholder="Rechercher un sujet, questions, des réponses..."
                 />
               </div>
             </div>
           </div>
           <div className="main-button">
             <div className="scroll-to-section">
-              <a href="#section2">Rechercher</a>
+              <a href="#section2" className="search-btn">Rechercher</a>
             </div>
           </div>
         </div>

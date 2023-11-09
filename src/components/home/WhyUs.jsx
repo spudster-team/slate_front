@@ -8,16 +8,11 @@ const WhyUs = () => {
       <div className="row">
         <div className="col-md-12">
           <div className="section-heading">
-            <h2>Why choose Grad School?</h2>
+            <h2>Why choose Slate?</h2>
           </div>
         </div>
         <div className="col-md-12">
           <div id='tabs'>
-            <ul>
-              <li><a href='#tabs-1'>Best Education</a></li>
-              <li><a href='#tabs-2'>Top Management</a></li>
-              <li><a href='#tabs-3'>Quality Meeting</a></li>
-            </ul>
             <section className='tabs-content'>
               <article id='tabs-1'>
                 <div className="row">

@@ -1,69 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-//import $ from "jquery";
 
 const Header = ({isLogin, setIsLogin}) => {
 
   const BASE_URL = window.location.host;
-
-  useEffect(() => {
-    /*$(".nav li:first").addClass("active");
-
-    $(window).scroll(function () {
-      checkSection();
-    });
-
-    $(".main-menu, .scroll-to-section").on("click", "a", function (e) {
-      if ($(e.target).hasClass("external")) {
-        return;
-      }
-      e.preventDefault();
-      $("#menu").removeClass("active");
-      showSection($(this).attr("href"), true);
-    });*/
-  }, []);
-
-  /*const showSection = (section, isAnimate) => {
-    let pathname = window.location.pathname;
-
-    if (pathname === "/") {
-      var direction = section.replace(/#/, "");
-      var reqSection = $(".section").filter(
-        '[data-section="' + direction + '"]'
-      );
-
-      var reqSectionPos = reqSection && reqSection.offset().top - 0;
-
-      if (isAnimate) {
-        $("body, html").animate(
-          {
-            scrollTop: reqSectionPos,
-          },
-          800
-        );
-      } else {
-        $("body, html").scrollTop(reqSectionPos);
-      }
-    }
-  };
-
-  const checkSection = () => {
-    $(".section").each(function () {
-      var $this = $(this),
-        topEdge = $this.offset().top - 80,
-        bottomEdge = topEdge + $this.height(),
-        wScroll = $(window).scrollTop();
-      if (topEdge < wScroll && bottomEdge > wScroll) {
-        var currentId = $this.data("section"),
-          reqLink = $("a").filter("[href*=\\#" + currentId + "]");
-        reqLink
-          .closest("li")
-          .addClass("active")
-          .siblings()
-          .removeClass("active");
-      }
-    });
-  };*/
 
   const logout = (e) => {
     e.preventDefault();
@@ -73,12 +13,41 @@ const Header = ({isLogin, setIsLogin}) => {
     window.location.href = `http://${BASE_URL}/`;
   }
 
+  const handleBarMenuClick = (e) => {
+    e.preventDefault();
+    let status = e.currentTarget.dataset.status;
+  
+    console.log(status);
+    let menu = document.getElementById('menu');
+    let menuLink = document.querySelector('.menu-link');
+    if(status === 'close') {
+        menu.classList.add('active');
+        menuLink.classList.add('active');
+        menuLink.dataset.status = 'open';
+    } else {
+      menu.classList.remove('active');
+      menuLink.classList.remove('active');
+      menuLink.dataset.status = 'close';
+    }
+  }
+  let navLinks = document.querySelectorAll('.main-nav a');
+  navLinks.forEach((navLink) => {
+    navLink.addEventListener('click', function(e) {
+      let menu = document.getElementById('menu');
+    let menuLink = document.querySelector('.menu-link');
+    menu.classList.remove('active');
+      menuLink.classList.remove('active');
+      menuLink.dataset.status = 'close';
+    });
+  });
+  
+
   return (
     <header className="main-header clearfix">
       <div className="logo">
         <a href="#section1">Slate</a>
       </div>
-      <a href="#menu" className="menu-link">
+      <a href="#menu" className="menu-link" data-status='close' onClick={handleBarMenuClick}>
         <i className="fa fa-bars"></i>
       </a>
       <nav id="menu" className="main-nav" role="navigation">
@@ -86,19 +55,8 @@ const Header = ({isLogin, setIsLogin}) => {
           <li>
             <NavLink to={"/#home"}>Accueil</NavLink>
           </li>
-          <li className="has-submenu">
-            <a href="#section2">A propos</a>
-            <ul className="sub-menu">
-              <li>
-                <NavLink to={"/#section2"}>Who we are?</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/#section3"}>What we do?</NavLink>
-              </li>
-            </ul>
-          </li>
           <li>
-            <NavLink to={"/#section6"}>Contact</NavLink>
+            <NavLink to={"/about"}>A propos</NavLink>
           </li>
           {isLogin ? (
               <React.Fragment>

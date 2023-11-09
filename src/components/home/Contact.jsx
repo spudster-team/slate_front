@@ -10,7 +10,7 @@ const Contact = () => {
               <h2>Let's Keep In Touch</h2>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-8 mx-auto">
             <form id="contact" action="" method="post">
               <div className="row">
                 <div className="col-md-6">
@@ -58,19 +58,6 @@ const Contact = () => {
                 </div>
               </div>
             </form>
-          </div>
-          <div className="col-md-6">
-            <div id="map">
-              <iframe
-                title="video"
-                src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="422px"
-                frameBorder="0"
-                style={{border: 0}}
-                allowFullScreen
-              ></iframe>
-            </div>
           </div>
         </div>
       </div>
