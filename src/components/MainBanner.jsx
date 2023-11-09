@@ -9,13 +9,24 @@ const MainBanner = () => {
 
       <div className="video-overlay header-text">
         <div className="caption">
-          <h6>Graduate School of Management</h6>
           <h2>
-            <em>Your</em> classNameroom
+            Bienvenue sur <em>Slate</em> - L'université des Questions et
+            Réponses
           </h2>
+          <div className="row mb-2 mt-5">
+            <div className="col-md-8 mx-auto">
+              <div className="search-bar">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Rechercher..."
+                />
+              </div>
+            </div>
+          </div>
           <div className="main-button">
             <div className="scroll-to-section">
-              <a href="#section2">Discover more</a>
+              <a href="#section2">Rechercher</a>
             </div>
           </div>
         </div>

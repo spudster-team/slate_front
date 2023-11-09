@@ -1,0 +1,5 @@
+.caption h2 {
+    font-size: 3em !important;
+    text-transform: lowercase !important;
+    text-transform: capitalize !important;
+}

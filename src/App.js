@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useEffect } from "react";
 import Header from "./components/Header";
 import MainBanner from "./components/MainBanner";
-import Features from "./components/Features";
+//import Features from "./components/Features";
 import WhyUs from "./components/WhyUs";
 import ComingSoon from "./components/ComingSoon";
 import Courses from "./components/Courses";
@@ -70,7 +70,6 @@ function App() {
     <React.Fragment>
       <Header />
       <MainBanner />
-      <Features />
       <WhyUs />
       <ComingSoon />
       <Courses />
