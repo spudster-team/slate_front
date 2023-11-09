@@ -24,7 +24,7 @@ const Courses = () => {
                   <img src="assets/images/author-01.png" alt="Author 1" />
                 </div>
                 <div className="text-button-pay">
-                  <a href="#">
+                  <a href="#home">
                     Pay <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
@@ -42,7 +42,7 @@ const Courses = () => {
                   <img src="assets/images/author-02.png" alt="Author 2" />
                 </div>
                 <div className="text-button-free">
-                  <a href="#">
+                  <a href="#home">
                     Free <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
@@ -60,7 +60,7 @@ const Courses = () => {
                   <img src="assets/images/author-03.png" alt="Author 3" />
                 </div>
                 <div className="text-button-pay">
-                  <a href="#">
+                  <a href="#home">
                     Pay <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
@@ -78,7 +78,7 @@ const Courses = () => {
                   <img src="assets/images/author-04.png" alt="Author 4" />
                 </div>
                 <div className="text-button-free">
-                  <a href="#">
+                  <a href="#home">
                     Free <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
@@ -96,7 +96,7 @@ const Courses = () => {
                   <img src="assets/images/author-05.png" alt="" />
                 </div>
                 <div className="text-button-pay">
-                  <a href="#">
+                  <a href="#home">
                     Pay <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
@@ -114,7 +114,7 @@ const Courses = () => {
                   <img src="assets/images/author-01.png" alt="" />
                 </div>
                 <div className="text-button-free">
-                  <a href="#">
+                  <a href="#home">
                     Free <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
@@ -132,7 +132,7 @@ const Courses = () => {
                   <img src="assets/images/author-02.png" alt="" />
                 </div>
                 <div className="text-button-free">
-                  <a href="#">
+                  <a href="#home">
                     Free <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
@@ -150,7 +150,7 @@ const Courses = () => {
                   <img src="assets/images/author-03.png" alt="" />
                 </div>
                 <div className="text-button-pay">
-                  <a href="#">
+                  <a href="#home">
                     Pay <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
@@ -168,7 +168,7 @@ const Courses = () => {
                   <img src="assets/images/author-04.png" alt="" />
                 </div>
                 <div className="text-button-pay">
-                  <a href="#">
+                  <a href="#home">
                     Pay <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
@@ -186,7 +186,7 @@ const Courses = () => {
                   <img src="assets/images/author-05.png" alt="" />
                 </div>
                 <div className="text-button-free">
-                  <a href="#">
+                  <a href="#home">
                     Free <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
@@ -204,7 +204,7 @@ const Courses = () => {
                   <img src="assets/images/author-01.png" alt="" />
                 </div>
                 <div className="text-button-pay">
-                  <a href="#">
+                  <a href="#home">
                     Pay <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
