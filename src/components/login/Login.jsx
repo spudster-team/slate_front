@@ -40,6 +40,9 @@ const Login = ({isLogin}) => {
             setError("Email ou mot de passe incorrect");
             setIsLoading(false);
           }
+        }).catch((error) => {
+          setError("Erreur interne");
+          setIsLoading(false);
         });
       }
     } else {

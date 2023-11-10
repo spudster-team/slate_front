@@ -47,6 +47,9 @@ const SignUp = ({isLogin}) => {
               setIsLoading(false);
             });
           }
+        }).catch((error) => {
+          setErrorMessages(["Erreur interne"]);
+          setIsLoading(false);
         });
       }
     }else {
