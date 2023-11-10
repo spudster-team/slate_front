@@ -32,6 +32,10 @@
     color: var(--yellow-dark);
     justify-content: center;
 }
+.vote-btn-section .btn-vote:hover{
+    background-color: var(--yellow-dark);
+    color: #fff;
+}
 
 .vote-btn-section{
     gap: 10px;
