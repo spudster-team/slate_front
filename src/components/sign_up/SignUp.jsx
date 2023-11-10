@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { checkResponse, validEmail, validPassword } from "../../utils/utility";
 import { NavLink } from "react-router-dom";
+import '../../auth.css';
 
 const SignUp = ({isLogin}) => {
   const URL_SIGNUP = "https://slate-service-api.onrender.com/api/user";

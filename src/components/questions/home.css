@@ -1,0 +1,108 @@
+:root{
+    --yellow: #F5A425;
+    --yellow-dark: #e49a22;
+    --blue: #366FBA;
+}
+
+.text-yellow{
+    color: var(--yellow);
+}
+
+.nav-vinany{
+    height: 80px;
+    background-color: rgb(66, 66, 66);
+}
+
+.main-home{
+    margin: 40px 50px;
+}
+
+.tri-btn-group{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.tri-btn{
+    padding: 10px 20px;
+    border: 1px solid var(--yellow);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.tri-btn:hover{
+    background-color: var(--yellow);
+    color: white;
+}
+
+.tri-active{
+    background-color: var(--yellow);
+    color: white;
+}
+
+.list-question{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.question-element{
+
+    /* padding: 20px; */
+    padding-bottom: 20px;
+    border-bottom: 1px solid grey;
+    
+}
+.question-element .question-title{
+    font-size: 1.2em;
+    
+}
+
+.question-element .question-tag-list{
+    /* display: flex; */
+    gap: 10px;
+}
+
+.question-tag-element{
+    padding: 4px 4px;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+
+.question-vote-section{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.question-vote-section .vote-value{
+    font-size: 1.3em;
+}
+
+.btn-yellow{
+    background-color: var(--yellow);
+    color: white;
+    padding: 10px 20px;
+}
+.btn-yellow:hover{
+    background-color: var(--yellow-dark);
+    color: white;
+}
+
+.tag-list{
+    display: flex;
+    gap: 5px;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+.tag-element{
+    text-decoration: underline;
+}
+
+.user-element .user-element-photo{
+    min-width: 70px;
+    /* height: auto; */
+}
+.user-element-photo img{
+    width: 100%;
+    height: auto;
+}

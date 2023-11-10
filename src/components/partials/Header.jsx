@@ -60,8 +60,11 @@ const Header = ({isLogin, setIsLogin}) => {
           </li>
           {isLogin ? (
               <React.Fragment>
+                <li>
+                <NavLink to="/questions" className={"external"}>Questions</NavLink>
+              </li>
               <li>
-                <NavLink to="" className={"external"}>Mon compte</NavLink>
+                <NavLink to="/account" className={"external"}>Mon compte</NavLink>
               </li>
               <li>
                 <a href="#logout" onClick={logout} className={"external"}>Déconnexion</a>
@@ -71,7 +74,7 @@ const Header = ({isLogin, setIsLogin}) => {
             (
               <React.Fragment>
               <li>
-              <NavLink to={"/login"} className={"external"}>Se connecter</NavLink>
+              <NavLink to={"/login"} className={"external"} activeclassname={"active"}>Se connecter</NavLink>
             </li>
             <li>
               <NavLink to={"/sign-up"} className={"external"}>S'inscrire</NavLink>

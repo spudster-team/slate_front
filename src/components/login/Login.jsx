@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { validEmail } from "../../utils/utility";
+import '../../auth.css';
 
 const Login = ({isLogin}) => {
   const BASE_URL = window.location.host;
