@@ -31,7 +31,7 @@ const Login = ({isLogin}) => {
           if (response.ok) {
               return response.json().then((res) => {
                 console.log(res);
-                sessionStorage.setItem("user", res.user);
+                sessionStorage.setItem("user", JSON.stringify(res.user));
                 sessionStorage.setItem("token", res.token);
                 setIsLoading(false);
                 window.location.href = `http://${BASE_URL}/`;

@@ -33,7 +33,7 @@ const SignUp = ({isLogin}) => {
               console.log(response);
               let user = response.user;
               let token = response.token;
-              sessionStorage.setItem("user", user);
+              sessionStorage.setItem("user", JSON.stringify(user));
               sessionStorage.setItem("token", token);
               setIsLoading(false);
               window.location.href = `http://${BASE_URL}/`;
