@@ -148,7 +148,7 @@ const DetailQuestion = () => {
                       <h3>
                         #{question && question.id} {question && question.title}
                       </h3>
-                      {user && user.id === question.owner.id && (
+                      {user && question.owner && (user.id === question.owner.id) && (
                         <div>
                           <button className="btn btn-danger">Supprimer</button>
                         </div>
