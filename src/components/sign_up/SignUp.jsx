@@ -36,7 +36,7 @@ const SignUp = ({isLogin}) => {
               sessionStorage.setItem("user", JSON.stringify(user));
               sessionStorage.setItem("token", token);
               setIsLoading(false);
-              //window.location.href = `http://${BASE_URL}/`;
+              window.location.href = `http://${BASE_URL}/`;
             });
           } else {
             let requirements = ["first_name", "last_name", "email", "password"];
