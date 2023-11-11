@@ -1,6 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 
 const MainBanner = () => {
+
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = (e) => {
+    let base_url = window.location.origin;
+    e.preventDefault();
+    window.location.href = base_url + "/questions?search=" + searchValue;
+  }
+
   return (
     <section className="section main-banner" id="top" data-section="section1">
       <video autoPlay muted loop id="bg-video">
@@ -24,6 +33,8 @@ const MainBanner = () => {
                 <input
                   type="text"
                   className="form-control search-bar-input"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
                   placeholder="Rechercher un sujet, questions, des réponses..."
                 />
               </div>
@@ -31,7 +42,7 @@ const MainBanner = () => {
           </div>
           <div className="main-button">
             <div className="scroll-to-section">
-              <a href="#section2" className="search-btn">Rechercher</a>
+              <a onClick={handleSearch} href="#section2" className="search-btn">Rechercher</a>
             </div>
           </div>
         </div>

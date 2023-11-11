@@ -10,10 +10,12 @@ const AllQuestions = () => {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [mostUser, setMostUser] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
-    let data = fetchAllQuestions();
+    let search_value = window.location.search.split("=")[1];
+    let data = fetchAllQuestions(search_value);
     let data2 = fetchMostUser();
     data2.then((response) => {
       if (response.ok) {
@@ -40,13 +42,38 @@ const AllQuestions = () => {
     }
   }, []);
 
-  const fetchAllQuestions = async () => {
-    return await fetch(QUESTIONS_URL);
+  const fetchAllQuestions = async (search) => {
+    let url = QUESTIONS_URL;
+    if (search) {
+      url += "?search=" + search;
+    }
+    return await fetch(url);
   };
 
   const fetchMostUser = async () => {
     return await fetch(MOST_USER_URL);
   };
+
+  const handleSearch = (e) => {
+    setIsLoading(true);
+    let data = fetchAllQuestions(searchValue);
+
+    if (data !== null) {
+      data
+        .then((response) => {
+          if (response.ok) {
+            return response.json().then((res) => {
+              setQuestions(res);
+              setIsLoading(false);
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          setIsLoading(false);
+        });
+    }
+  }
 
   return (
     <React.Fragment>
@@ -56,9 +83,11 @@ const AllQuestions = () => {
             <input
               type="text"
               className="form-control"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Rechercher un sujet, questions, des réponses..."
             />
-            <button className="btn btn-warning ml-1">Rechercher</button>
+            <button onClick={handleSearch} className="btn btn-warning ml-1">Rechercher</button>
           </div>
         </div>
         <div
@@ -99,6 +128,7 @@ const AllQuestions = () => {
                     <div className="tri-btn">Nouvelles</div>
                     <div className="tri-btn">Pas encore repondu</div>
                   </div>
+                  <h4 className="mt-3">{questions.length.toString()} résultat(s)</h4>
                   <div className="list-question">
                     {questions &&
                       questions.map((question, index) => {
@@ -188,6 +218,11 @@ const AllQuestions = () => {
                           </div>
                         );
                       })}
+                      {questions.length === 0 && (
+                        <div className="col-md-8 mx-auto">
+                          <img style={{width: "100%"}} src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="no result" />
+                          </div>
+                      )}
                   </div>
                 </div>
                 <div className="col-3 mx-5">
