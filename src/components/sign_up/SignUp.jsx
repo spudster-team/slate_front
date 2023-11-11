@@ -36,7 +36,7 @@ const SignUp = ({isLogin}) => {
               sessionStorage.setItem("user", JSON.stringify(user));
               sessionStorage.setItem("token", token);
               setIsLoading(false);
-              window.location.href = `http://${BASE_URL}/`;
+              //window.location.href = `http://${BASE_URL}/`;
             });
           } else {
             let requirements = ["first_name", "last_name", "email", "password"];
@@ -75,7 +75,7 @@ const SignUp = ({isLogin}) => {
       return false;
     } else if (!validPassword(password)) {
       errors.push(
-        "Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre"
+        "Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre, des caractères speciaux"
       );
       setErrorMessages(errors);
       return false;

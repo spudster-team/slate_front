@@ -7,7 +7,7 @@ const Contact = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="section-heading">
-              <h2>Let's Keep In Touch</h2>
+              <h2>Nous contacter?</h2>
             </div>
           </div>
           <div className="col-md-8 mx-auto">
@@ -20,7 +20,7 @@ const Contact = () => {
                       type="text"
                       className="form-control"
                       id="name"
-                      placeholder="Your Name"
+                      placeholder="Votre nom"
                       required=""
                     />
                   </fieldset>
@@ -32,7 +32,7 @@ const Contact = () => {
                       type="text"
                       className="form-control"
                       id="email"
-                      placeholder="Your Email"
+                      placeholder="Votre email"
                       required=""
                     />
                   </fieldset>
@@ -44,7 +44,7 @@ const Contact = () => {
                       rows="6"
                       className="form-control"
                       id="message"
-                      placeholder="Your message..."
+                      placeholder="Votre message..."
                       required=""
                     ></textarea>
                   </fieldset>
@@ -52,7 +52,7 @@ const Contact = () => {
                 <div className="col-md-12">
                   <fieldset>
                     <button type="submit" id="form-submit" className="button">
-                      Send Message Now
+                      Envoyer le message
                     </button>
                   </fieldset>
                 </div>

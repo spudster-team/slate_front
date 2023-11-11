@@ -14,7 +14,7 @@ const MainBanner = () => {
             Réponses
           </h2>
           <div className="row mb-3 mt-5">
-            <div className="col-md-6 mx-auto">
+            <div className="col-lg-8 mx-auto">
               <div className="search-bar input-group">
                 <div className="input-group-prepend">
                   <span className="input-group-text" id="basic-addon1">

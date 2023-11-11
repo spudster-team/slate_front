@@ -7,19 +7,24 @@ const About = () => {
         <div className="container py-5">
           <div className="row h-100 align-items-center py-5">
             <div className="col-lg-6">
-              <h1 className="">A propos de Slate</h1>
+              <h1 className="">A propos de slate</h1>
               <p className="lead fs-4 text-muted mb-0">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Quas animi similique, impedit, odio fugiat pariatur expedita 
-                dolorem fuga cum quibusdam architecto ab? Saepe officia numquam
-                 omnis nesciunt, ex nam tempora?
+                Slate est une plateforme web qui sert de carrefour de l'entraide
+                entre étudiants. Les utilisateurs peuvent poser des questions
+                sur divers sujets académiques, des devoirs aux projets, et
+                recevoir des réponses de leurs camarades. Grâce à une communauté
+                active, Slate encourage la collaboration éducative et permet aux
+                étudiants de trouver rapidement des solutions à leurs
+                préoccupations académiques, le tout dans un environnement en
+                ligne convivial.
               </p>
             </div>
             <div className="col-lg-6 d-none d-lg-block">
               <img
-                src="https://bootstrapious.com/i/snippets/sn-about/illus.png"
+                src="assets/images/illustration.png"
                 alt=""
                 className="img-fluid"
+                style={{ width: "80%", margin: "auto" }}
               />
             </div>
           </div>

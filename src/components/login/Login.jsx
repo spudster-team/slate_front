@@ -30,7 +30,6 @@ const Login = ({isLogin}) => {
         response.then((response) => {
           if (response.ok) {
               return response.json().then((res) => {
-                console.log(res);
                 sessionStorage.setItem("user", JSON.stringify(res.user));
                 sessionStorage.setItem("token", res.token);
                 setIsLoading(false);

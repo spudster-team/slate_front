@@ -25,6 +25,10 @@
   padding: 16px !important;
 }
 
+p {
+  text-align: justify;
+}
+
 /** navigation **/
 @media screen and (max-width: 950px) {
 
