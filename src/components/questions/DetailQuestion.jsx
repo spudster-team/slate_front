@@ -442,6 +442,7 @@ const DetailQuestion = ({ isLogin }) => {
                       <div className="row">
                         <div className="col-md-12">
                           <img
+                            style={{maxWidth: "100%"}}
                             src={question.photo.path && question.photo.path}
                             alt={question.title}
                           />
