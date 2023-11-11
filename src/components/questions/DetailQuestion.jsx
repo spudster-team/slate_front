@@ -80,7 +80,12 @@ const DetailQuestion = ({ isLogin }) => {
 
   const handleResponseSubmit = (e) => {
     e.preventDefault();
-    if(content === "" || content === "<p></p>" || content === "<p><br></p>" || content === "<p><b></b></p>") {
+    if (
+      content === "" ||
+      content === "<p></p>" ||
+      content === "<p><br></p>" ||
+      content === "<p><b></b></p>"
+    ) {
       Swal.fire({
         title: "Information!",
         text: "Veuillez saisir votre reponse",
@@ -177,7 +182,6 @@ const DetailQuestion = ({ isLogin }) => {
                     setQuestion(res);
                     //setIsLoading(false);
                     element.innerHTML = original_content;
-
                   });
                 } else {
                   //setIsLoading(false);
@@ -302,7 +306,7 @@ const DetailQuestion = ({ isLogin }) => {
       });
   };
 
-  const deleteResponse = (id) => {
+  const deleteResponse = (e, id) => {
     if (!isLogin) {
       Swal.fire({
         title: "Information!",
@@ -318,6 +322,13 @@ const DetailQuestion = ({ isLogin }) => {
       return;
     }
 
+    let element = e.target;
+    let loading = document.createElement("div");
+    loading.className = "spinner-border spinner-border-sm text-primary";
+    loading.setAttribute("role", "status");
+    loading.style.marginLeft = "10px";
+    element.appendChild(loading);
+
     let headers = new Headers();
     headers.append("Authorization", "token " + sessionStorage.getItem("token"));
     headers.append("Content-Type", "application/json");
@@ -329,10 +340,12 @@ const DetailQuestion = ({ isLogin }) => {
       .then((response) => {
         if (response.ok) {
           getAllQuestions();
+          element.removeChild(loading);
         }
       })
       .catch((error) => {
         console.error(error);
+        element.removeChild(loading);
       });
   };
 
@@ -413,14 +426,14 @@ const DetailQuestion = ({ isLogin }) => {
                             >
                               <span>Supprimer</span>
                               {isDeleteQuestionLoading && (
-                              <div
-                                className="spinner-border spinner-border-sm text-primary"
-                                role="status"
-                                style={{ marginLeft: "10px" }}
-                              >
-                                <span class="sr-only">Loading...</span>
-                              </div>
-                            )}
+                                <div
+                                  className="spinner-border spinner-border-sm text-primary"
+                                  role="status"
+                                  style={{ marginLeft: "10px" }}
+                                >
+                                  <span class="sr-only">Loading...</span>
+                                </div>
+                              )}
                             </button>
                           </div>
                         )}
@@ -554,7 +567,7 @@ const DetailQuestion = ({ isLogin }) => {
                                     <button
                                       className="btn btn-danger"
                                       onClick={(e) =>
-                                        deleteResponse(reponse.id)
+                                        deleteResponse(e, reponse.id)
                                       }
                                     >
                                       Supprimer
