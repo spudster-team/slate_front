@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./home.css";
 import { Link } from "react-router-dom";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
-const AllQuestions = ({isLogin}) => {
+const AllQuestions = ({ isLogin }) => {
   const BASE_URL = window.location.host;
   const QUESTIONS_URL = "https://slate-service-api.onrender.com/api/question";
   const MOST_USER_URL =
@@ -75,7 +75,7 @@ const AllQuestions = ({isLogin}) => {
           setIsLoading(false);
         });
     }
-  }
+  };
 
   const goToAskQuestion = (e) => {
     e.preventDefault();
@@ -83,18 +83,18 @@ const AllQuestions = ({isLogin}) => {
       window.location.href = "/ask-question";
     } else {
       Swal.fire({
-        title: 'Information!',
-        text: 'Vous devez vous connecter pour poser une question',
-        icon: 'warning',
-        confirmButtonText: 'Ok'
+        title: "Information!",
+        text: "Vous devez vous connecter pour poser une question",
+        icon: "warning",
+        confirmButtonText: "Ok",
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            window.location.href = `http://${BASE_URL}/login`;
+          window.location.href = `http://${BASE_URL}/login`;
         }
       });
     }
-  }
+  };
 
   return (
     <React.Fragment>
@@ -108,7 +108,9 @@ const AllQuestions = ({isLogin}) => {
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Rechercher un sujet, questions, des réponses..."
             />
-            <button onClick={handleSearch} className="btn btn-warning ml-1">Rechercher</button>
+            <button onClick={handleSearch} className="btn btn-warning ml-1">
+              Rechercher
+            </button>
           </div>
         </div>
         <div
@@ -149,7 +151,9 @@ const AllQuestions = ({isLogin}) => {
                     <div className="tri-btn">Nouvelles</div>
                     <div className="tri-btn">Pas encore repondu</div>
                   </div>
-                  <h4 className="mt-3">{questions.length.toString()} résultat(s)</h4>
+                  <h4 className="mt-3">
+                    {questions.length.toString()} résultat(s)
+                  </h4>
                   <div className="list-question">
                     {questions &&
                       questions.map((question, index) => {
@@ -200,54 +204,52 @@ const AllQuestions = ({isLogin}) => {
                             </div>
                             <div className="question-vote-section col-2">
                               <div className="up row">
-                                {question.up_vote - question.down_vote > 0 && (
+                                <i
+                                  className="fa fa-arrow-up fa-2x text-yellow"
+                                  style={{ marginRight: "10px" }}
+                                ></i>
+                                {question.up_vote ? (
                                   <React.Fragment>
-                                    <i
-                                      className="fa fa-arrow-up fa-2x text-yellow"
-                                      style={{ marginRight: "10px" }}
-                                    ></i>
                                     <span className="vote-value">
-                                      +{question.up_vote - question.down_vote}
+                                      +{question.up_vote}
                                     </span>
                                   </React.Fragment>
+                                ) : (
+                                  "0"
                                 )}
-                                {question.up_vote - question.down_vote < 0 && (
+                                <i
+                                  className="fa ml-3 fa-arrow-down fa-2x text-secondary"
+                                  style={{ marginRight: "10px" }}
+                                ></i>
+                                {question.down_vote ? (
                                   <React.Fragment>
-                                    <i
-                                      className="fa fa-arrow-down fa-2x text-yellow"
-                                      style={{ marginRight: "10px" }}
-                                    ></i>
                                     <span className="vote-value">
-                                      {question.up_vote - question.down_vote}
+                                      -{question.down_vote}
                                     </span>
                                   </React.Fragment>
-                                )}
-                                {question.up_vote - question.down_vote ===
-                                  0 && (
-                                  <React.Fragment>
-                                    <i
-                                      className="fa fa-arrow-right fa-2x text-yellow"
-                                      style={{ marginRight: "10px" }}
-                                    ></i>
-                                    <span className="vote-value">
-                                      {question.up_vote - question.down_vote}
-                                    </span>
-                                  </React.Fragment>
-                                )}
+                                ): '0'}
                               </div>
                             </div>
                           </div>
                         );
                       })}
-                      {questions.length === 0 && (
-                        <div className="col-md-8 mx-auto">
-                          <img style={{width: "100%"}} src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="no result" />
-                          </div>
-                      )}
+                    {questions.length === 0 && (
+                      <div className="col-md-8 mx-auto">
+                        <img
+                          style={{ width: "100%" }}
+                          src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif"
+                          alt="no result"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="col-3 mx-5">
-                  <Link onClick={goToAskQuestion} to='#!' className="btn btn-yellow">
+                  <Link
+                    onClick={goToAskQuestion}
+                    to="#!"
+                    className="btn btn-yellow"
+                  >
                     Poser une question
                   </Link>
                   <div className="row tag-section my-5">

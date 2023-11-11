@@ -379,7 +379,7 @@ const DetailQuestion = ({ isLogin }) => {
                     <div className="d-flex justify-content-between align-content-center">
                       <div className="d-flex align-items-center">
                         <div>
-                          <i className="fa fa-clock-o"></i> il y a{" "}
+                          <i className="fa fa-clock-o"></i> Il y a{" "}
                           {question && question.date_posted}
                         </div>
                         <div className="mx-5 tags-list">
@@ -516,7 +516,7 @@ const DetailQuestion = ({ isLogin }) => {
                             <div className="row my-4">
                               <div className="col">
                                 <div>
-                                  <p>Par @{reponse.owner.first_name}</p>
+                                  <p>Par <a href="#!">@{reponse.owner.first_name}</a></p>
                                   <i className="fa fa-clock-o"></i> il y a{" "}
                                   {reponse.date_posted}
                                 </div>
