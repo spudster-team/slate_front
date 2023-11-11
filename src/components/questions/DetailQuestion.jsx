@@ -79,6 +79,15 @@ const DetailQuestion = ({ isLogin }) => {
 
   const handleResponseSubmit = (e) => {
     e.preventDefault();
+    if(content === "" || content === "<p></p>" || content === "<p><br></p>" || content === "<p><b></b></p>") {
+      Swal.fire({
+        title: "Information!",
+        text: "Veuillez saisir votre reponse",
+        icon: "warning",
+        confirmButtonText: "Ok",
+      });
+      return;
+    }
     setIsResponseLoading(true);
     let form = document.getElementById("form_response");
     let photo = document.getElementById("photo").files[0];
