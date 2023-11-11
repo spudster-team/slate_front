@@ -111,12 +111,12 @@ const AllQuestions = ({ isLogin }) => {
             <input
               type="text"
               id="search-bar-input"
-              className="form-control"
+              className="form-control p-4"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Rechercher un sujet, questions, des réponses..."
             />
-            <button onClick={handleSearch} className="btn btn-warning ml-1">
+            <button onClick={handleSearch} className="btn btn-yellow ml-1">
               Rechercher
             </button>
           </div>

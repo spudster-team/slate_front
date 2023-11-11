@@ -20,6 +20,7 @@ const DetailQuestion = ({ isLogin }) => {
   const [question, setQuestion] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isResponseLoading, setIsResponseLoading] = useState(false);
+  const [isDeleteQuestionLoading, setIsDeleteQuestionLoading] = useState(false);
   const [user, setUser] = useState({});
 
   const [content, setContent] = useState("");
@@ -256,6 +257,7 @@ const DetailQuestion = ({ isLogin }) => {
       });
       return;
     }
+    setIsDeleteQuestionLoading(true);
 
     let headers = new Headers();
     headers.append("Authorization", "token " + sessionStorage.getItem("token"));
@@ -267,10 +269,12 @@ const DetailQuestion = ({ isLogin }) => {
     req
       .then((response) => {
         if (response.ok) {
+          setIsDeleteQuestionLoading(false);
           window.location.href = `http://${BASE_URL}/questions`;
         }
       })
       .catch((error) => {
+        setIsDeleteQuestionLoading(false);
         console.error(error);
       });
   };
@@ -384,7 +388,16 @@ const DetailQuestion = ({ isLogin }) => {
                               className="btn btn-danger"
                               onClick={(e) => deleteQuestion(question.id)}
                             >
-                              Supprimer
+                              <span>Supprimer</span>
+                              {isDeleteQuestionLoading && (
+                              <div
+                                className="spinner-border spinner-border-sm text-primary"
+                                role="status"
+                                style={{ marginLeft: "10px" }}
+                              >
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                            )}
                             </button>
                           </div>
                         )}
