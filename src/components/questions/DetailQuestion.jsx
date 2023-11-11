@@ -212,6 +212,15 @@ const DetailQuestion = ({ isLogin }) => {
       });
       return;
     }
+
+    let element = e.target;
+    let loading = document.createElement("div");
+    loading.className = "spinner-border spinner-border-sm text-primary";
+    loading.setAttribute("role", "status");
+    loading.style.marginLeft = "10px";
+    let original_content = element.innerHTML;
+    element.innerHTML = loading.outerHTML;
+
     let headers = new Headers();
     headers.append("Authorization", "token " + sessionStorage.getItem("token"));
     headers.append("Content-Type", "application/json");
@@ -225,10 +234,12 @@ const DetailQuestion = ({ isLogin }) => {
     req
       .then((response) => {
         if (response.ok) {
+          element.innerHTML = original_content;
           getAllQuestions();
         }
       })
       .catch((error) => {
+        element.innerHTML = original_content;
         console.error(error);
       });
   };
