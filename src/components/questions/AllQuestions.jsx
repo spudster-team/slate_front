@@ -32,7 +32,7 @@ const AllQuestions = ({ isLogin }) => {
         .then((response) => {
           if (response.ok) {
             return response.json().then((res) => {
-              setQuestions(res);
+              setQuestions(res.reverse());
               setIsLoading(false);
             });
           }

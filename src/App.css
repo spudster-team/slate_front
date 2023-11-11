@@ -66,3 +66,16 @@ p {
   background-color: var(--yellow) !important;
   color: #fff !important;
 }
+
+.jodit-wysiwyg {
+  color: #000 !important;
+}
+.reponse-image {
+  max-width: 200px !important;
+  width: 100% !important;
+  height: auto !important;
+}
+.reponse-image img {
+  max-width: 100% !important;
+  height: auto !important;
+}

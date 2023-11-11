@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 //import "./details.css";
 import { Link } from "react-router-dom";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
+import JoditEditor from "jodit-react";
 
 const DetailQuestion = ({ isLogin }) => {
   const BASE_URL = window.location.host;
@@ -14,10 +15,21 @@ const DetailQuestion = ({ isLogin }) => {
   const RESPONSE_DELETE_URL =
     "https://slate-service-api.onrender.com/api/response/";
 
+  const editor = useRef(null);
+
   const [question, setQuestion] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isResponseLoading, setIsResponseLoading] = useState(false);
   const [user, setUser] = useState({});
+
+  const [content, setContent] = useState("");
+
+  const config = {
+    readonly: false,
+    height: 250,
+    placeholder: "Ecrivez quelque chose...",
+    language: "fr",
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -69,7 +81,9 @@ const DetailQuestion = ({ isLogin }) => {
     e.preventDefault();
     setIsResponseLoading(true);
     let form = document.getElementById("form_response");
-    let formData = new FormData(form);
+    let formData = new FormData();
+    formData.append("content", content);
+    formData.append("photo", document.getElementById("photo").files[0]);
     let req = postResponse(formData);
     req
       .then((response) => {
@@ -107,14 +121,14 @@ const DetailQuestion = ({ isLogin }) => {
   const voteQuestion = (vote) => {
     if (!isLogin) {
       Swal.fire({
-        title: 'Information!',
-        text: 'Vous devez vous connecter pour voter',
-        icon: 'warning',
-        confirmButtonText: 'Ok'
+        title: "Information!",
+        text: "Vous devez vous connecter pour voter",
+        icon: "warning",
+        confirmButtonText: "Ok",
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            window.location.href = `http://${BASE_URL}/login`;
+          window.location.href = `http://${BASE_URL}/login`;
         }
       });
       return;
@@ -161,14 +175,14 @@ const DetailQuestion = ({ isLogin }) => {
   const voteResponse = (id, vote) => {
     if (!isLogin) {
       Swal.fire({
-        title: 'Information!',
-        text: 'Vous devez vous connecter pour voter',
-        icon: 'warning',
-        confirmButtonText: 'Ok'
+        title: "Information!",
+        text: "Vous devez vous connecter pour voter",
+        icon: "warning",
+        confirmButtonText: "Ok",
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            window.location.href = `http://${BASE_URL}/login`;
+          window.location.href = `http://${BASE_URL}/login`;
         }
       });
       return;
@@ -218,14 +232,14 @@ const DetailQuestion = ({ isLogin }) => {
   const deleteQuestion = (id) => {
     if (!isLogin) {
       Swal.fire({
-        title: 'Information!',
-        text: 'Vous devez vous connecter pour supprimer une question',
-        icon: 'warning',
-        confirmButtonText: 'Ok'
+        title: "Information!",
+        text: "Vous devez vous connecter pour supprimer une question",
+        icon: "warning",
+        confirmButtonText: "Ok",
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            window.location.href = `http://${BASE_URL}/login`;
+          window.location.href = `http://${BASE_URL}/login`;
         }
       });
       return;
@@ -252,14 +266,14 @@ const DetailQuestion = ({ isLogin }) => {
   const deleteResponse = (id) => {
     if (!isLogin) {
       Swal.fire({
-        title: 'Information!',
-        text: 'Vous devez vous connecter pour supprimer une reponse',
-        icon: 'warning',
-        confirmButtonText: 'Ok'
+        title: "Information!",
+        text: "Vous devez vous connecter pour supprimer une reponse",
+        icon: "warning",
+        confirmButtonText: "Ok",
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            window.location.href = `http://${BASE_URL}/login`;
+          window.location.href = `http://${BASE_URL}/login`;
         }
       });
       return;
@@ -289,18 +303,18 @@ const DetailQuestion = ({ isLogin }) => {
       window.location.href = "/ask-question";
     } else {
       Swal.fire({
-        title: 'Information!',
-        text: 'Vous devez vous connecter pour poser une question',
-        icon: 'warning',
-        confirmButtonText: 'Ok'
+        title: "Information!",
+        text: "Vous devez vous connecter pour poser une question",
+        icon: "warning",
+        confirmButtonText: "Ok",
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            window.location.href = `http://${BASE_URL}/login`;
+          window.location.href = `http://${BASE_URL}/login`;
         }
       });
     }
-  }
+  };
 
   return (
     <React.Fragment>
@@ -374,7 +388,11 @@ const DetailQuestion = ({ isLogin }) => {
                       </div>
                     )}
                     <div className="question-content my-4">
-                      {question && question.content}
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: question && question.content,
+                        }}
+                      />
                     </div>
                     <div className="d-flex justify-content-between align-content-center">
                       <div className="d-flex align-items-center">
@@ -469,7 +487,16 @@ const DetailQuestion = ({ isLogin }) => {
                                 }
                               >
                                 <div className="reponse-content">
-                                  {reponse.content}
+                                  <div
+                                    dangerouslySetInnerHTML={{
+                                      __html: reponse && reponse.content,
+                                    }}
+                                  />
+                                  <div className="reponse-image">
+                                    {reponse && reponse.photo && (
+                                      <img src={reponse.photo.path} alt="" />
+                                    )}
+                                  </div>
                                 </div>
                               </div>
                               {user &&
@@ -516,7 +543,10 @@ const DetailQuestion = ({ isLogin }) => {
                             <div className="row my-4">
                               <div className="col">
                                 <div>
-                                  <p>Par <a href="#!">@{reponse.owner.first_name}</a></p>
+                                  <p>
+                                    Par{" "}
+                                    <a href="#!">@{reponse.owner.first_name}</a>
+                                  </p>
                                   <i className="fa fa-clock-o"></i> il y a{" "}
                                   {reponse.date_posted}
                                 </div>
@@ -543,13 +573,13 @@ const DetailQuestion = ({ isLogin }) => {
                           id="form_response"
                           onSubmit={handleResponseSubmit}
                         >
-                          <textarea
-                            id="content"
-                            name="content"
-                            className="form-control mb-3"
-                            placeholder="Repondre au question..."
-                            required
-                          ></textarea>
+                          <JoditEditor
+                            ref={editor}
+                            value={content}
+                            config={config}
+                            onBlur={(e) => setContent(e)}
+                            onChange={(e) => {}}
+                          />
                           <label htmlFor="file">Ajouter une image</label>
                           <input
                             type="file"
@@ -571,12 +601,20 @@ const DetailQuestion = ({ isLogin }) => {
                           </button>
                         </form>
                       </React.Fragment>
-                    ) : <h4>Veuillez vous connecter pour répondre aux questions!</h4>}
+                    ) : (
+                      <h4>
+                        Veuillez vous connecter pour répondre aux questions!
+                      </h4>
+                    )}
                   </div>
                 </div>
               </div>
               <div className="col-3 mx-5">
-                <Link onClick={goToAskQuestion} to="#!" className="btn btn-yellow">
+                <Link
+                  onClick={goToAskQuestion}
+                  to="#!"
+                  className="btn btn-yellow"
+                >
                   Poser une question
                 </Link>
                 <div className="row tag-section my-5">
