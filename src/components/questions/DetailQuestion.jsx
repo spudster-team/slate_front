@@ -131,7 +131,7 @@ const DetailQuestion = ({ isLogin }) => {
       });
   };
 
-  const voteQuestion = (vote) => {
+  const voteQuestion = (e, vote) => {
     if (!isLogin) {
       Swal.fire({
         title: "Information!",
@@ -146,6 +146,14 @@ const DetailQuestion = ({ isLogin }) => {
       });
       return;
     }
+    let element = e.target;
+    let loading = document.createElement("div");
+    loading.className = "spinner-border spinner-border-sm text-primary";
+    loading.setAttribute("role", "status");
+    loading.style.marginLeft = "10px";
+    let original_content = element.innerHTML;
+    element.innerHTML = loading.outerHTML;
+
     let id = window.location.pathname.split("/")[2];
     let headers = new Headers();
     headers.append("Authorization", "token " + sessionStorage.getItem("token"));
@@ -167,15 +175,19 @@ const DetailQuestion = ({ isLogin }) => {
                 if (response.ok) {
                   return response.json().then((res) => {
                     setQuestion(res);
-                    setIsLoading(false);
+                    //setIsLoading(false);
+                    element.innerHTML = original_content;
+
                   });
                 } else {
-                  setIsLoading(false);
+                  //setIsLoading(false);
+                  element.innerHTML = original_content;
                 }
               })
               .catch((error) => {
                 console.error(error);
-                setIsLoading(false);
+                element.innerHTML = original_content;
+                //setIsLoading(false);
               });
           }
         }
@@ -185,7 +197,7 @@ const DetailQuestion = ({ isLogin }) => {
       });
   };
 
-  const voteResponse = (id, vote) => {
+  const voteResponse = (e, id, vote) => {
     if (!isLogin) {
       Swal.fire({
         title: "Information!",
@@ -472,7 +484,7 @@ const DetailQuestion = ({ isLogin }) => {
                       <button
                         id="up_vote"
                         className="btn btn-vote"
-                        onClick={(e) => voteQuestion(true)}
+                        onClick={(e) => voteQuestion(e, true)}
                       >
                         <i className="fa fa-arrow-up"></i>
                       </button>
@@ -483,7 +495,7 @@ const DetailQuestion = ({ isLogin }) => {
                       <button
                         id="down_vote"
                         className="btn btn-vote"
-                        onClick={(e) => voteQuestion(false)}
+                        onClick={(e) => voteQuestion(e, false)}
                       >
                         <i className="fa fa-arrow-down"></i>
                       </button>
@@ -542,7 +554,7 @@ const DetailQuestion = ({ isLogin }) => {
                                 <div className="vote-btn-section d-flex flex-column align-items-center">
                                   <button
                                     onClick={(e) =>
-                                      voteResponse(reponse.id, true)
+                                      voteResponse(e, reponse.id, true)
                                     }
                                     className="btn btn-vote"
                                   >
@@ -556,7 +568,7 @@ const DetailQuestion = ({ isLogin }) => {
                                   </div>
                                   <button
                                     onClick={(e) =>
-                                      voteResponse(reponse.id, false)
+                                      voteResponse(e, reponse.id, false)
                                     }
                                     className="btn btn-vote"
                                   >
