@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 //import "./details.css";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
 
-const DetailQuestion = () => {
+const DetailQuestion = ({ isLogin }) => {
   const BASE_URL = window.location.host;
   const QUESTION_DETAIL_URL =
     "https://slate-service-api.onrender.com/api/question/";
@@ -104,6 +105,20 @@ const DetailQuestion = () => {
   };
 
   const voteQuestion = (vote) => {
+    if (!isLogin) {
+      Swal.fire({
+        title: 'Information!',
+        text: 'Vous devez vous connecter pour voter',
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            window.location.href = `http://${BASE_URL}/login`;
+        }
+      });
+      return;
+    }
     let id = window.location.pathname.split("/")[2];
     let headers = new Headers();
     headers.append("Authorization", "token " + sessionStorage.getItem("token"));
@@ -144,6 +159,20 @@ const DetailQuestion = () => {
   };
 
   const voteResponse = (id, vote) => {
+    if (!isLogin) {
+      Swal.fire({
+        title: 'Information!',
+        text: 'Vous devez vous connecter pour voter',
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            window.location.href = `http://${BASE_URL}/login`;
+        }
+      });
+      return;
+    }
     let headers = new Headers();
     headers.append("Authorization", "token " + sessionStorage.getItem("token"));
     headers.append("Content-Type", "application/json");
@@ -187,6 +216,21 @@ const DetailQuestion = () => {
   };
 
   const deleteQuestion = (id) => {
+    if (!isLogin) {
+      Swal.fire({
+        title: 'Information!',
+        text: 'Vous devez vous connecter pour supprimer une question',
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            window.location.href = `http://${BASE_URL}/login`;
+        }
+      });
+      return;
+    }
+
     let headers = new Headers();
     headers.append("Authorization", "token " + sessionStorage.getItem("token"));
     headers.append("Content-Type", "application/json");
@@ -206,6 +250,21 @@ const DetailQuestion = () => {
   };
 
   const deleteResponse = (id) => {
+    if (!isLogin) {
+      Swal.fire({
+        title: 'Information!',
+        text: 'Vous devez vous connecter pour supprimer une reponse',
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            window.location.href = `http://${BASE_URL}/login`;
+        }
+      });
+      return;
+    }
+
     let headers = new Headers();
     headers.append("Authorization", "token " + sessionStorage.getItem("token"));
     headers.append("Content-Type", "application/json");
@@ -223,6 +282,25 @@ const DetailQuestion = () => {
         console.error(error);
       });
   };
+
+  const goToAskQuestion = (e) => {
+    e.preventDefault();
+    if (isLogin) {
+      window.location.href = "/ask-question";
+    } else {
+      Swal.fire({
+        title: 'Information!',
+        text: 'Vous devez vous connecter pour poser une question',
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            window.location.href = `http://${BASE_URL}/login`;
+        }
+      });
+    }
+  }
 
   return (
     <React.Fragment>
@@ -458,39 +536,47 @@ const DetailQuestion = () => {
                 </div>
                 <div className="row">
                   <div className="col-md-12">
-                    <form id="form_response" onSubmit={handleResponseSubmit}>
-                      <textarea
-                        id="content"
-                        name="content"
-                        className="form-control mb-3"
-                        placeholder="Repondre au question..."
-                        required
-                      ></textarea>
-                      <label htmlFor="file">Ajouter une image</label>
-                      <input
-                        type="file"
-                        name="photo"
-                        id="photo"
-                        className="form-control mb-2"
-                      />
-                      <button type="submit" className="btn btn-yellow">
-                        <span>REPONDRE</span>
-                        {isResponseLoading && (
-                          <div
-                            className="spinner-border spinner-border-sm text-primary"
-                            role="status"
-                            style={{ marginLeft: "10px" }}
-                          >
-                            <span class="sr-only">Loading...</span>
-                          </div>
-                        )}
-                      </button>
-                    </form>
+                    {isLogin ? (
+                      <React.Fragment>
+                        <h3 className="py-4">Repondre</h3>
+                        <form
+                          id="form_response"
+                          onSubmit={handleResponseSubmit}
+                        >
+                          <textarea
+                            id="content"
+                            name="content"
+                            className="form-control mb-3"
+                            placeholder="Repondre au question..."
+                            required
+                          ></textarea>
+                          <label htmlFor="file">Ajouter une image</label>
+                          <input
+                            type="file"
+                            name="photo"
+                            id="photo"
+                            className="form-control mb-2"
+                          />
+                          <button type="submit" className="btn btn-yellow">
+                            <span>REPONDRE</span>
+                            {isResponseLoading && (
+                              <div
+                                className="spinner-border spinner-border-sm text-primary"
+                                role="status"
+                                style={{ marginLeft: "10px" }}
+                              >
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                            )}
+                          </button>
+                        </form>
+                      </React.Fragment>
+                    ) : <h4>Veuillez vous connecter pour répondre aux questions!</h4>}
                   </div>
                 </div>
               </div>
               <div className="col-3 mx-5">
-                <Link to={"/ask-question"} className="btn btn-yellow">
+                <Link onClick={goToAskQuestion} to="#!" className="btn btn-yellow">
                   Poser une question
                 </Link>
                 <div className="row tag-section my-5">

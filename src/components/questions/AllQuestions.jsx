@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./home.css";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
-const AllQuestions = () => {
+const AllQuestions = ({isLogin}) => {
+  const BASE_URL = window.location.host;
   const QUESTIONS_URL = "https://slate-service-api.onrender.com/api/question";
   const MOST_USER_URL =
     "https://slate-service-api.onrender.com/api/user/most-active";
@@ -72,6 +74,25 @@ const AllQuestions = () => {
           console.log(error);
           setIsLoading(false);
         });
+    }
+  }
+
+  const goToAskQuestion = (e) => {
+    e.preventDefault();
+    if (isLogin) {
+      window.location.href = "/ask-question";
+    } else {
+      Swal.fire({
+        title: 'Information!',
+        text: 'Vous devez vous connecter pour poser une question',
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            window.location.href = `http://${BASE_URL}/login`;
+        }
+      });
     }
   }
 
@@ -226,7 +247,7 @@ const AllQuestions = () => {
                   </div>
                 </div>
                 <div className="col-3 mx-5">
-                  <Link to={"/ask-question"} className="btn btn-yellow">
+                  <Link onClick={goToAskQuestion} to='#!' className="btn btn-yellow">
                     Poser une question
                   </Link>
                   <div className="row tag-section my-5">

@@ -7,7 +7,7 @@ const About = () => {
         <div className="container py-5">
           <div className="row h-100 align-items-center py-5">
             <div className="col-lg-6">
-              <h1 className="">A propos de slate</h1>
+              <h2 className="display-4 font-weight-light">A propos de Slate</h2>
               <p className="lead fs-4 text-muted mb-0">
                 Slate est une plateforme web qui sert de carrefour de l'entraide
                 entre étudiants. Les utilisateurs peuvent poser des questions

@@ -38,9 +38,9 @@ function App() {
         <Routes>
         <Route exact path='' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
-        <Route path='/questions' element={<AllQuestions/>} />
-        <Route path="/questions/:id" element={<DetailQuestion/>} />
-        <Route path='/ask-question' element={<NewQuestion/>} />
+        <Route path='/questions' element={<AllQuestions isLogin={isLogin}/>} />
+        <Route path="/questions/:id" element={<DetailQuestion isLogin={isLogin}/>} />
+        <Route path='/ask-question' element={<NewQuestion isLogin={isLogin}/>} />
         <Route path="/account" element={<Account/>}/>
         <Route path='/login' element={<Login isLogin={isLogin}/>}/>
         <Route path='/sign-up' element={<SignUp isLogin={isLogin}/>}/>

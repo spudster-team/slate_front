@@ -5,8 +5,8 @@ const MainBanner = () => {
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearch = (e) => {
-    let base_url = window.location.origin;
     e.preventDefault();
+    let base_url = window.location.origin;
     window.location.href = base_url + "/questions?search=" + searchValue;
   }
 

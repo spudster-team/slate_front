@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./details.css";
 
-const NewQuestion = () => {
+const NewQuestion = ({isLogin}) => {
   const BASE_URL = window.location.host;
   const NEW_QUESTION_URL =
     "https://slate-service-api.onrender.com/api/question";
 
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (!isLogin) {
+      window.location.href = window.location.origin + "/login";
+    }
+  }, [isLogin]);
+
 
   const publishQuestion = (e) => {
     e.preventDefault();
