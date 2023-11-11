@@ -24,6 +24,10 @@
 .search-btn {
   padding: 16px !important;
 }
+.search-btn:hover {
+  background-color: var(--yellow-dark) !important;
+  color: #fff !important;
+}
 
 p {
   text-align: justify;
@@ -41,4 +45,24 @@ p {
     overflow-y: unset;
     display: block;
   }
+}
+
+.btn-login {
+  border-color: #fff !important;
+  color: #fff !important;
+  transition: all 0.3s ease-in-out !important;
+}
+.btn-login:hover {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.btn-signup {
+  border-color: var(--yellow) !important;
+  color: var(--yellow) !important;
+  transition: all 0.3s ease-in-out !important;
+}
+.btn-signup:hover {
+  background-color: var(--yellow) !important;
+  color: #fff !important;
 }

@@ -84,14 +84,14 @@ const Header = ({ isLogin, setIsLogin }) => {
               <li>
                 <NavLink
                   to={"/login"}
-                  className={"external"}
+                  className={"external btn-login"}
                   activeclassname={"active"}
                 >
                   Se connecter
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/sign-up"} className={"external"}>
+                <NavLink to={"/sign-up"} className={"external btn-signup"}>
                   S'inscrire
                 </NavLink>
               </li>

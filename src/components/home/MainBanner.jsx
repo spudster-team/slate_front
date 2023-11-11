@@ -7,6 +7,10 @@ const MainBanner = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     let base_url = window.location.origin;
+    if (searchValue === "") {
+      document.querySelector(".search-bar-input").focus();
+      return;
+    }
     window.location.href = base_url + "/questions?search=" + searchValue;
   }
 

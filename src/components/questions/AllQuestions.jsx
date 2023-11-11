@@ -57,7 +57,14 @@ const AllQuestions = ({ isLogin }) => {
   };
 
   const handleSearch = (e) => {
+
+    if(searchValue === ''){
+      document.querySelector("#search-bar-input").focus();
+      return;
+    }
+
     setIsLoading(true);
+
     let data = fetchAllQuestions(searchValue);
 
     if (data !== null) {
@@ -103,6 +110,7 @@ const AllQuestions = ({ isLogin }) => {
           <div className="col-lg-8 mx-auto d-flex">
             <input
               type="text"
+              id="search-bar-input"
               className="form-control"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
