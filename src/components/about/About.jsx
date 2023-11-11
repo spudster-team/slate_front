@@ -24,7 +24,7 @@ const About = () => {
                 src="assets/images/illustration.png"
                 alt=""
                 className="img-fluid"
-                style={{ width: "80%", margin: "auto" }}
+                style={{ width: "100%", margin: "auto" }}
               />
             </div>
           </div>
@@ -46,7 +46,7 @@ const About = () => {
             <div className="col-xl-3 col-sm-6 mb-5">
               <div className="bg-white rounded shadow-sm py-5 px-4">
                 <img
-                  src="https://bootstrapious.com/i/snippets/sn-about/avatar-4.png"
+                  src="assets/images/author-01.png"
                   alt=""
                   width="100"
                   className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
@@ -83,7 +83,7 @@ const About = () => {
             <div className="col-xl-3 col-sm-6 mb-5">
               <div className="bg-white rounded shadow-sm py-5 px-4">
                 <img
-                  src="https://bootstrapious.com/i/snippets/sn-about/avatar-3.png"
+                  src="assets/images/author-04.png"
                   alt=""
                   width="100"
                   className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
@@ -120,7 +120,7 @@ const About = () => {
             <div className="col-xl-3 col-sm-6 mb-5">
               <div className="bg-white rounded shadow-sm py-5 px-4">
                 <img
-                  src="https://bootstrapious.com/i/snippets/sn-about/avatar-2.png"
+                  src="assets/images/author-05.png"
                   alt=""
                   width="100"
                   className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
@@ -157,7 +157,7 @@ const About = () => {
             <div className="col-xl-3 col-sm-6 mb-5">
               <div className="bg-white rounded shadow-sm py-5 px-4">
                 <img
-                  src="https://bootstrapious.com/i/snippets/sn-about/avatar-1.png"
+                  src="assets/images/author-03.png"
                   alt=""
                   width="100"
                   className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
