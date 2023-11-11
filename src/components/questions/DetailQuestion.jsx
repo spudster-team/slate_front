@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./details.css";
+//import "./details.css";
 import { Link } from "react-router-dom";
 
 const DetailQuestion = () => {
@@ -10,6 +10,8 @@ const DetailQuestion = () => {
     "https://slate-service-api.onrender.com/api/question/response/";
   const RESPONSE_VOTE_URL =
     "https://slate-service-api.onrender.com/api/response/vote/";
+  const RESPONSE_DELETE_URL =
+    "https://slate-service-api.onrender.com/api/response/";
 
   const [question, setQuestion] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -155,29 +157,33 @@ const DetailQuestion = () => {
     req
       .then((response) => {
         if (response.ok) {
-          let data = fetchQuestion();
-          if (data !== null) {
-            data
-              .then((response) => {
-                if (response.ok) {
-                  return response.json().then((res) => {
-                    setQuestion(res);
-                    setIsLoading(false);
-                  });
-                } else {
-                  setIsLoading(false);
-                }
-              })
-              .catch((error) => {
-                console.error(error);
-                setIsLoading(false);
-              });
-          }
+          getAllQuestions();
         }
       })
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const getAllQuestions = () => {
+    let data = fetchQuestion();
+    if (data !== null) {
+      data
+        .then((response) => {
+          if (response.ok) {
+            return response.json().then((res) => {
+              setQuestion(res);
+              setIsLoading(false);
+            });
+          } else {
+            setIsLoading(false);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          setIsLoading(false);
+        });
+    }
   };
 
   const deleteQuestion = (id) => {
@@ -197,7 +203,26 @@ const DetailQuestion = () => {
       .catch((error) => {
         console.error(error);
       });
-  }
+  };
+
+  const deleteResponse = (id) => {
+    let headers = new Headers();
+    headers.append("Authorization", "token " + sessionStorage.getItem("token"));
+    headers.append("Content-Type", "application/json");
+    let req = fetch(RESPONSE_DELETE_URL + id, {
+      method: "DELETE",
+      headers: headers,
+    });
+    req
+      .then((response) => {
+        if (response.ok) {
+          getAllQuestions();
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <React.Fragment>
@@ -251,7 +276,10 @@ const DetailQuestion = () => {
                         question.owner &&
                         user.id === question.owner.id && (
                           <div>
-                            <button className="btn btn-danger" onClick={(e) => deleteQuestion(question.id)}>
+                            <button
+                              className="btn btn-danger"
+                              onClick={(e) => deleteQuestion(question.id)}
+                            >
                               Supprimer
                             </button>
                           </div>
@@ -301,6 +329,8 @@ const DetailQuestion = () => {
                               question &&
                               question.owner &&
                               question.owner.photo.path
+                                ? question.owner.photo.path
+                                : "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200&r=pg&d=mm"
                             }
                             alt="pdp"
                           />
@@ -351,14 +381,41 @@ const DetailQuestion = () => {
                         return (
                           <div key={index} className="reponse-element mb-3">
                             <div className="row">
-                              <div className="col">
+                              <div
+                                className={
+                                  user &&
+                                  reponse.owner &&
+                                  user.id === reponse.owner.id
+                                    ? "col-9"
+                                    : "col"
+                                }
+                              >
                                 <div className="reponse-content">
                                   {reponse.content}
                                 </div>
                               </div>
+                              {user &&
+                                reponse.owner &&
+                                user.id === reponse.owner.id && (
+                                  <div className="col-2">
+                                    <button
+                                      className="btn btn-danger"
+                                      onClick={(e) =>
+                                        deleteResponse(reponse.id)
+                                      }
+                                    >
+                                      Supprimer
+                                    </button>
+                                  </div>
+                                )}
                               <div className="col-1">
                                 <div className="vote-btn-section d-flex flex-column align-items-center">
-                                  <button onClick={(e) => voteResponse(reponse.id, true)} className="btn btn-vote">
+                                  <button
+                                    onClick={(e) =>
+                                      voteResponse(reponse.id, true)
+                                    }
+                                    className="btn btn-vote"
+                                  >
                                     <i className="fa fa-arrow-up"></i>
                                   </button>
                                   <div className="vote-value">
@@ -367,7 +424,12 @@ const DetailQuestion = () => {
                                         reponse.up_vote - reponse.down_vote
                                       ).toString()}
                                   </div>
-                                  <button onClick={(e) => voteResponse(reponse.id, false)} className="btn btn-vote">
+                                  <button
+                                    onClick={(e) =>
+                                      voteResponse(reponse.id, false)
+                                    }
+                                    className="btn btn-vote"
+                                  >
                                     <i className="fa fa-arrow-down"></i>
                                   </button>
                                 </div>
@@ -443,15 +505,6 @@ const DetailQuestion = () => {
                       </div>
                       <div className="tag-element">
                         <a href="#test">math</a>
-                      </div>
-                      <div className="tag-element">
-                        <a href="#test">equation</a>
-                      </div>
-                      <div className="tag-element">
-                        <a href="#test">equation</a>
-                      </div>
-                      <div className="tag-element">
-                        <a href="#test">equation</a>
                       </div>
                       <div className="tag-element">
                         <a href="#test">equation</a>

@@ -16,11 +16,11 @@ const AllQuestions = () => {
     let data = fetchAllQuestions();
     let data2 = fetchMostUser();
     data2.then((response) => {
-        if (response.ok) {
-            return response.json().then((res) => {
-                setMostUser(res);
-            });
-        }
+      if (response.ok) {
+        return response.json().then((res) => {
+          setMostUser(res);
+        });
+      }
     });
 
     if (data !== null) {
@@ -51,6 +51,24 @@ const AllQuestions = () => {
   return (
     <React.Fragment>
       <div className="mt-5 p-5">
+        <div className="row mb-3">
+          <div className="col-lg-8 mx-auto d-flex">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Rechercher un sujet, questions, des réponses..."
+            />
+            <button className="btn btn-warning ml-1">Rechercher</button>
+          </div>
+        </div>
+        <div
+          style={{
+            border: "1px solid gray",
+            width: "50%",
+            height: "1px",
+            margin: "auto",
+          }}
+        />
         <div className="main-home row justify-content-between">
           {isLoading ? (
             <div
@@ -74,152 +92,161 @@ const AllQuestions = () => {
             </div>
           ) : (
             <React.Fragment>
-              <div className="col">
-                <div className="tri-btn-group">
-                  <div className="tri-btn tri-active">top</div>
-                  <div className="tri-btn">Nouvelles</div>
-                  <div className="tri-btn">Pas encore repondu</div>
-                </div>
-                <div className="list-question">
-                  {questions &&
-                    questions.map((question, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="question-element row align-items-center"
-                        >
-                          <div className="col my-2 align-content-center">
-                            <div className="question-title my-2">
-                              <Link to={"/questions/" + question.id}>
-                                {question.title}
-                              </Link>
-                            </div>
-                            <div className="question-tag-list d-flex ">
-                              {question.tag &&
-                                question.tag.map((tg, index) => {
-                                  return (
-                                    <div
-                                      className="question-tag-element"
-                                      key={index}
-                                    >
-                                      {tg.title}
-                                    </div>
-                                  );
-                                })}
-                              {question.tag && question.tag.length === 0 && (
-                                <span>Pas de tag</span>
-                              )}
-                            </div>
-                            <div className="question-element-footer mt-2">
-                              <span>
-                                <i className="fa fa-reply "></i>{" "}
-                                {question.n_response} reponse
-                                {question.n_response > 1 ? "s" : ""}
-                              </span>{" "}
-                              |{" "}
-                              <span className="question-element-time">
-                                Il y a {question.date_posted}{" "}
-                              </span>
-                              <span className="question-element-user">
-                                par{" "}
-                                <a href="#test">{question.owner.first_name}</a>
-                              </span>
-                            </div>
-                          </div>
-                          <div className="question-vote-section col-2">
-                            <div className="up row">
-                              {question.up_vote - question.down_vote > 0 && (
-                                <React.Fragment>
-                                  <i
-                                    className="fa fa-arrow-up fa-2x text-yellow"
-                                    style={{ marginRight: "10px" }}
-                                  ></i>
-                                  <span className="vote-value">
-                                    +{question.up_vote - question.down_vote}
-                                  </span>
-                                </React.Fragment>
-                              )}
-                              {question.up_vote - question.down_vote < 0 && (
-                                <React.Fragment>
-                                  <i
-                                    className="fa fa-arrow-down fa-2x text-yellow"
-                                    style={{ marginRight: "10px" }}
-                                  ></i>
-                                  <span className="vote-value">
-                                    {question.up_vote - question.down_vote}
-                                  </span>
-                                </React.Fragment>
-                              )}
-                              {question.up_vote - question.down_vote === 0 && (
-                                <React.Fragment>
-                                  <i
-                                    className="fa fa-arrow-right fa-2x text-yellow"
-                                    style={{ marginRight: "10px" }}
-                                  ></i>
-                                  <span className="vote-value">
-                                    {question.up_vote - question.down_vote}
-                                  </span>
-                                </React.Fragment>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                </div>
-              </div>
-              <div className="col-3 mx-5">
-                <Link to={"/ask-question"} className="btn btn-yellow">
-                  Poser une question
-                </Link>
-                <div className="row tag-section my-5">
-                  <div className="col-2">
-                    <i className="fa fa-tags fa-2x"></i>
+              <div className="row">
+                <div className="col">
+                  <div className="tri-btn-group">
+                    <div className="tri-btn tri-active">top</div>
+                    <div className="tri-btn">Nouvelles</div>
+                    <div className="tri-btn">Pas encore repondu</div>
                   </div>
-                  <div className="col">
-                    <h3>Tags</h3>
-                    <div className="tag-list">
-                      <div className="tag-element">
-                        <a href="#test">histoire</a>
-                      </div>
-                      <div className="tag-element">
-                        <a href="#test">math</a>
-                      </div>
-                      <div className="tag-element">
-                        <a href="#test">equation</a>
-                      </div>
-                      <div className="tag-element">
-                        <a href="#test">equation</a>
-                      </div>
-                      <div className="tag-element">
-                        <a href="#test">equation</a>
-                      </div>
-                      <div className="tag-element">
-                        <a href="#test">equation</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <h3>Les utilisateurs les plus actifs</h3>
-                  <div className="list-user-actif my-3">
-                    {mostUser && mostUser.map((user, index) => {
+                  <div className="list-question">
+                    {questions &&
+                      questions.map((question, index) => {
                         return (
-                            <div key={index} className="user-element row align-items-center">
-                      <div className="col-1 user-element-photo">
-                        <img
-                          src={user.photo.path}
-                          alt="pdp"
-                        />
-                      </div>
-                      <div className="col">
-                        <div className="user-element-username">
-                          <a href="#test">{user.first_name} {user.last_name}</a>
+                          <div
+                            key={index}
+                            className="question-element row align-items-center"
+                          >
+                            <div className="col my-2 align-content-center">
+                              <div className="question-title my-2">
+                                <Link to={"/questions/" + question.id}>
+                                  {question.title}
+                                </Link>
+                              </div>
+                              <div className="question-tag-list d-flex ">
+                                {question.tag &&
+                                  question.tag.map((tg, index) => {
+                                    return (
+                                      <div
+                                        className="question-tag-element"
+                                        key={index}
+                                      >
+                                        {tg.title}
+                                      </div>
+                                    );
+                                  })}
+                                {question.tag && question.tag.length === 0 && (
+                                  <span>Pas de tag</span>
+                                )}
+                              </div>
+                              <div className="question-element-footer mt-2">
+                                <span>
+                                  <i className="fa fa-reply "></i>{" "}
+                                  {question.n_response} reponse
+                                  {question.n_response > 1 ? "s" : ""}
+                                </span>{" "}
+                                |{" "}
+                                <span className="question-element-time">
+                                  Il y a {question.date_posted}{" "}
+                                </span>
+                                <span className="question-element-user">
+                                  par{" "}
+                                  <a href="#test">
+                                    {question.owner.first_name}
+                                  </a>
+                                </span>
+                              </div>
+                            </div>
+                            <div className="question-vote-section col-2">
+                              <div className="up row">
+                                {question.up_vote - question.down_vote > 0 && (
+                                  <React.Fragment>
+                                    <i
+                                      className="fa fa-arrow-up fa-2x text-yellow"
+                                      style={{ marginRight: "10px" }}
+                                    ></i>
+                                    <span className="vote-value">
+                                      +{question.up_vote - question.down_vote}
+                                    </span>
+                                  </React.Fragment>
+                                )}
+                                {question.up_vote - question.down_vote < 0 && (
+                                  <React.Fragment>
+                                    <i
+                                      className="fa fa-arrow-down fa-2x text-yellow"
+                                      style={{ marginRight: "10px" }}
+                                    ></i>
+                                    <span className="vote-value">
+                                      {question.up_vote - question.down_vote}
+                                    </span>
+                                  </React.Fragment>
+                                )}
+                                {question.up_vote - question.down_vote ===
+                                  0 && (
+                                  <React.Fragment>
+                                    <i
+                                      className="fa fa-arrow-right fa-2x text-yellow"
+                                      style={{ marginRight: "10px" }}
+                                    ></i>
+                                    <span className="vote-value">
+                                      {question.up_vote - question.down_vote}
+                                    </span>
+                                  </React.Fragment>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                </div>
+                <div className="col-3 mx-5">
+                  <Link to={"/ask-question"} className="btn btn-yellow">
+                    Poser une question
+                  </Link>
+                  <div className="row tag-section my-5">
+                    <div className="col-2">
+                      <i className="fa fa-tags fa-2x"></i>
+                    </div>
+                    <div className="col">
+                      <h3>Tags</h3>
+                      <div className="tag-list">
+                        <div className="tag-element">
+                          <a href="#test">histoire</a>
+                        </div>
+                        <div className="tag-element">
+                          <a href="#test">math</a>
+                        </div>
+                        <div className="tag-element">
+                          <a href="#test">equation</a>
+                        </div>
+                        <div className="tag-element">
+                          <a href="#test">informatique</a>
                         </div>
                       </div>
                     </div>
-                        );
-                    })}
+                  </div>
+                  <div>
+                    <h3>Les utilisateurs les plus actifs</h3>
+                    <div className="list-user-actif my-3">
+                      {mostUser &&
+                        mostUser.map((user, index) => {
+                          return (
+                            <div
+                              key={index}
+                              className="user-element mb-3 row align-items-center"
+                            >
+                              <div className="col-1 user-element-photo">
+                                <img
+                                  src={
+                                    user.photo.path
+                                      ? user.photo.path
+                                      : "https://www.w3schools.com/howto/img_avatar.png"
+                                  }
+                                  alt="pdp"
+                                />
+                              </div>
+                              <div className="col">
+                                <div className="user-element-username">
+                                  <a href="#test">
+                                    {user.first_name} {user.last_name}
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </div>
                   </div>
                 </div>
               </div>
