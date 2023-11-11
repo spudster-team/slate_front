@@ -31,7 +31,10 @@ const NewQuestion = ({ isLogin }) => {
     let formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("photo", document.getElementById("image").files[0]);
+    let photo = document.getElementById("image").files[0];
+    if (photo) {
+      formData.append("photo", photo);
+    }
 
     let response = postQuestion(formData);
 

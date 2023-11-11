@@ -81,9 +81,12 @@ const DetailQuestion = ({ isLogin }) => {
     e.preventDefault();
     setIsResponseLoading(true);
     let form = document.getElementById("form_response");
+    let photo = document.getElementById("photo").files[0];
     let formData = new FormData();
     formData.append("content", content);
-    formData.append("photo", document.getElementById("photo").files[0]);
+    if (photo !== undefined && photo !== null) {
+      formData.append("photo", photo);
+    }
     let req = postResponse(formData);
     req
       .then((response) => {
